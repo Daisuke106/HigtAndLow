@@ -9,14 +9,33 @@ import SwiftUI
 import UIKit
 import Foundation
 
+
 struct ContentView: View {
+    func high(){
+        if randomInt < playerInt {
+            winer = "Playerの勝ち"
+        } else {
+            winer = "Playerの負け"
+        }
+    }
+    func low(){
+        if randomInt > playerInt {
+            winer = "Playerの勝ち"
+        } else {
+            winer = "Playerの負け"
+        }
+    }
 //    @State var counter = 0
 //    @Binding var Computer_Numbers: Bool
     let Teams = ["Diamonds", "Clubs", "Tigers", "Jets"]
-    let randomInt = Int.random(in: 0..<12)
+//    let randomInt = Int.random(in: 0..<12)
+    @State var randomInt = Int.random(in: 1...13)
+    @State var playerInt = Int.random(in: 1...13)
     @State var result = 0
+    @State var isGame = false
+    @State var winer = ""
     var body: some View {
-        counter = [1,2,3,4,5,6,7,8,9,10,11,12]
+//        counter = [1,2,3,4,5,6,7,8,9,10,11,12]
 //        Computer_Numbers = ["Diamonds", "Spade", "Clubs"]
         
         
@@ -30,11 +49,12 @@ struct ContentView: View {
 
                 
             if let random_Teams = Teams.randomElement() {
-                Text(random_Teams)
-                    .frame(width: 100,
-                           height: 150)
-                    .border(Color.black)
-                Text(counter)
+                    Text(random_Teams)
+                        .frame(width: 100,
+                               height: 150)
+                        .border(Color.black)
+                    Text("\(randomInt)")
+
                 
                 if result == 1 {
                     Text("Club13")
@@ -48,21 +68,29 @@ struct ContentView: View {
                 Text("Player")
                     .frame(width: 100, height: 120, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 Spacer()
-                Text("High or Low?")
-                    .frame(width: 100, height:150)
-                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                if isGame {
+                    Text("\(playerInt)")
+                        .frame(width: 100, height:150)
+                        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                } else {
+                    Text("High or Low?")
+                        .frame(width: 100, height:150)
+                        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                }
+
             }
 
         }
             HStack {
-                Text("Playerの勝ち")
+                Text(winer)
             }
             Spacer()
 
             HStack {
                 Spacer()
                 Button(action: {
-                    
+                    isGame = true
+                    high()
                 }){
                     Text("High")
                         .frame(width: 80, height: 60)
@@ -71,7 +99,8 @@ struct ContentView: View {
                 }
 
                 Button(action: {
-                    
+                    isGame = true
+                    low()
                 }){
                     Text("Low")
                         .frame(width: 80, height: 60)
