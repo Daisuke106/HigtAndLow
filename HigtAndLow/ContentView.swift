@@ -16,7 +16,7 @@ struct ContentView: View {
     let randomInt = Int.random(in: 0..<12)
     @State var result = 0
     var body: some View {
-//        counter = [1,2,3,4,5,6,7,8,9,10,11,12]
+        counter = [1,2,3,4,5,6,7,8,9,10,11,12]
 //        Computer_Numbers = ["Diamonds", "Spade", "Clubs"]
         
         
@@ -27,43 +27,58 @@ struct ContentView: View {
                 Spacer()
                 Text("Computer")
                 Spacer()
-                if let random_Teams = Teams.randomElement() {
-                    Text(random_Teams)
-                }
-                Text("Diamonds13")
+
+                
+            if let random_Teams = Teams.randomElement() {
+                Text(random_Teams)
                     .frame(width: 100,
                            height: 150)
                     .border(Color.black)
+                Text(counter)
                 
                 if result == 1 {
                     Text("Club13")
                     
                 }
+            }
 
             }
             VStack {
                 Spacer()
                 Text("Player")
+                    .frame(width: 100, height: 120, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 Spacer()
                 Text("High or Low?")
                     .frame(width: 100, height:150)
                     .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
             }
+
         }
+            HStack {
+                Text("Playerの勝ち")
+            }
             Spacer()
 
             HStack {
                 Spacer()
-                Text("High")
-                    .frame(width: 80, height: 60)
-                    .background(Color.green)
-                    .foregroundColor(.white)
-
-                Text("Low")
-                    .frame(width: 80, height: 60)
-                    .background(Color.red)
+                Button(action: {
                     
-                    .foregroundColor(.white)
+                }){
+                    Text("High")
+                        .frame(width: 80, height: 60)
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                }
+
+                Button(action: {
+                    
+                }){
+                    Text("Low")
+                        .frame(width: 80, height: 60)
+                        .background(Color.red)
+                        
+                        .foregroundColor(.white)
+                }
                 Spacer()
             }
             Spacer()
