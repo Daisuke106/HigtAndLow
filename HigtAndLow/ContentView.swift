@@ -62,12 +62,12 @@ struct ContentView: View {
                 Text("Low")
                     .frame(width: 80, height: 60)
                     .background(Color.red)
+                    
                     .foregroundColor(.white)
                 Spacer()
             }
             Spacer()
             Button(action: {
-                
                 
             }){
                 Text("やり直す")
